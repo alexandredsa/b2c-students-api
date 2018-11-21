@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  mongodb:
+      image: mongo:latest
+      ports:
+        - 27017:27017
+      volumes:
+        - './mongodb-data:/data/db'
+
+  redis:
+      image: redis:alpine
+      volumes:
+        - './redis-data:/data'
+      ports:
+        - "6379:6379"

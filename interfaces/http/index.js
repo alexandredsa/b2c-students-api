@@ -1,6 +1,7 @@
 const restify = require('restify');
 const port = process.env.PORT || 80;
 const app = restify.createServer();
+const routes = require('./routes');
 
 
 class Server {
@@ -9,6 +10,7 @@ class Server {
         app.use(restify.queryParser());
         app.pre(restify.pre.sanitizePath());
         app.listen(port, () => console.log(`${app.name} listening at port ${port}`));
+        routes(app);
     }
 }
 
