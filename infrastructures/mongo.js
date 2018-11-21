@@ -1,6 +1,6 @@
 const params = {
-    default: "mongodb://localhost:27017/anglo",
-    test: "mongodb://localhost:27017/angloTest"
+    default: `mongodb://${process.env.MONGO_URL}/anglo`,
+    test: `mongodb://${process.env.MONGO_URL}/angloTest`
 };
 
 const mongoose = require('mongoose');
