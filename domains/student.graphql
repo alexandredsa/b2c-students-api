@@ -1,7 +1,0 @@
-
-type Student {
-    id: Int
-    name: String!   
-    email: String!
-    liveNear: [AngloLocation] 
-}

@@ -1,8 +1,0 @@
-# import AngloLocation from "anglo_location.graphql"
-# import Student from "student.graphql"
-
-type Query {
-    student(id: Int!): Student
-    students(liveNear: String): [Student]
-}
-

@@ -1,5 +1,7 @@
 require('dotenv').config()
+const mongo = require('./infrastructures/mongo');
 const Http = require('./interfaces/http');
 
-
-new Http().init();
+mongo.init()
+    .then(() => new Http().init())
+    .catch(err => console.error(err));
