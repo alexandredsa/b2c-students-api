@@ -12,5 +12,9 @@ module.exports = {
         const client = new Redis().getClient();
         const getAsync = promisify(client.get).bind(client);
         return getAsync(key);
+    },
+    del: (key) => {
+        const client = new Redis().getClient();
+        client.del(key);
     }
 }

@@ -5,7 +5,7 @@ const auth = require('../middleware/auth');
 
 module.exports = (app) => {
     app.get('/health', (req, res, next) => {
-        res.json({status: 'OK'});
+        res.json({ status: 'OK' });
         next();
     });
 
@@ -14,7 +14,10 @@ module.exports = (app) => {
         next();
     });
 
+    app.del('/auth/invalidate', auth, account.invalidate);
+
     app.post('/auth', account.auth);
+    app.post('/auth/invalidate', auth, account.invalidate);
     app.post('/students', auth, student.save);
     app.get('/students', auth, student.list);
 }
