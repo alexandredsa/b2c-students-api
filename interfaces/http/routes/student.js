@@ -5,7 +5,7 @@ module.exports = {
     save: (req, res, next) => {
         const student = req.body;
         const user = req.params.user;
-        registerStudent(student, user)
+        registerStudent(student, user.id)
             .then(result => res.json(201, result))
             .catch(err => {
                 console.error(err);

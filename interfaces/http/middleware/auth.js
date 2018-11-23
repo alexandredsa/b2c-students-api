@@ -4,9 +4,8 @@ const auth = (req, res, next) => {
     const token = req.headers['app-token'];
     get(token)
         .then(reply => {
-            console.log(reply)
             if (reply) {
-                req.params.user = reply;
+                req.params.user = JSON.parse(reply);
                 next();
             } else {
                 res.send(401, 'Token is not valid');

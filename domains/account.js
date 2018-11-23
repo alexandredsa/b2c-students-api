@@ -6,6 +6,10 @@ const AccountSchema = new mongoose.Schema({
   },
   password: {
     type: String
+  },
+  role: {
+    type: String,
+    enum: ['ADMIN', 'EMPLOYEE']
   }
 }, {
   versionKey: false
