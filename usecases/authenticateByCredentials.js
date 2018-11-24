@@ -5,7 +5,8 @@ const { set, get } = require('../interfaces/cache');
 
 const authenticate = (credentials) => {
     const { login, password } = credentials;
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => 
+    {
         Account.findOne({ login, password: md5(password) })
             .then(account => {
                 const token = hat();
