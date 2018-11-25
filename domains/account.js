@@ -9,7 +9,12 @@ const AccountSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['ADMIN', 'EMPLOYEE']
+    enum: ['ADMIN', 'EMPLOYEE'],
+    default: 'EMPLOYEE'
+  },
+  status: {
+    type: Boolean,
+    default: true
   }
 }, {
   versionKey: false
