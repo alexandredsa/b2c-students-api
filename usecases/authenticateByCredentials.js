@@ -5,13 +5,15 @@ const { set, get } = require('../interfaces/cache');
 
 const authenticate = (credentials) => {
     const { login, password } = credentials;
-    return new Promise((resolve, reject) => 
-    {
+    return new Promise((resolve, reject) => {
         Account.findOne({ login, password: md5(password) })
             .then(account => {
+                if (!account) {
+                    reject({ status: 401, msg: "Invalid token" });
+                }
+
                 const token = hat();
-                set(token, 
-                    JSON.stringify({ id: account._id.toString(), role: account.role }));
+                set(token, JSON.stringify({ id: account._id.toString(), role: account.role }));
                 resolve({
                     user: account.login,
                     token

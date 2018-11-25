@@ -15,10 +15,14 @@ const StudentSchema = new mongoose.Schema({
     ref: 'Account',
     required: true,
     index: true
+  },
+  createAt: {
+    type: Date,
+    default: Date.now
   }
 }, {
-  versionKey: false
-});
+    versionKey: false
+  });
 
 StudentModel = mongoose.model('Student', StudentSchema);
 
