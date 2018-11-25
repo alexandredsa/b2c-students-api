@@ -11,7 +11,8 @@ class Server {
         app.use(restify.queryParser());
         app.pre(restify.pre.sanitizePath());
         const cors = corsMiddleware({
-            origins: ['*']
+            origins: ['*'],
+            allowHeaders: ['app-token'],
         })
         app.pre(cors.preflight)
         app.use(cors.actual)
