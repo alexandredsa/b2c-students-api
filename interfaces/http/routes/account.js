@@ -38,7 +38,8 @@ module.exports = {
             .catch(err => res.json(500, err.message))
     },
     list: (req, res, next) => {
-        listUser()
+        const { user } = req.params;
+        listUser(user.id)
             .then(result => res.json(200, result))
             .catch(err => res.json())
     }
