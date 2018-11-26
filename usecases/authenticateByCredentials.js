@@ -12,12 +12,16 @@ const authenticate = (credentials) => {
                     reject({ status: 401, msg: "Invalid token" });
                 }
 
-                const token = hat();
-                set(token, JSON.stringify({ id: account._id.toString(), role: account.role }));
-                resolve({
-                    user: account.login,
-                    token
-                });
+                if (!account.status) {
+                    reject({ status: 403, msg: "Usuário inativado" });
+                } else {
+                    const token = hat();
+                    set(token, JSON.stringify({ id: account._id.toString(), role: account.role }));
+                    resolve({
+                        user: account.login,
+                        token
+                    });
+                }
             })
             .catch(err => reject(err))
     })
