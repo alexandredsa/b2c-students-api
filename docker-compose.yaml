@@ -22,8 +22,24 @@ services:
     links:
       - mongodb
       - redis
-  proxy:
-    image: proxy
-    ports:
-      - '80:80'
-    restart: always
+  nginx:
+      image: linuxserver/letsencrypt
+      ports:
+        - "80:80"
+        - "443:443"
+      volumes:
+        - ../nginx/nginx.conf:/config/nginx/site-confs/default
+      depends_on:
+        - b2c-admin
+        - b2c-api
+      container_name: nginx
+      environment:
+        - PUID=999 # get on dockerhost through command "id <user>""
+        - PGID=999
+        - EMAIL=alexandredias1995@gmail.com
+        - URL=b2c-app.info
+        - SUBDOMAINS=www
+        - TZ=America/SaoPaulo
+        - VALIDATION=dns # using dns validation
+        - DNSPLUGIN=dnsimple # via dnsimple, note there is additional configuration require separate from this file
+        # - STAGING=true # this should be uncommented when testing for initial success, to avoid some rate limiting
