@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM linuxserver/letsencrypt
 
 RUN adduser --disabled-password --gecos ""  www \
     && mkdir /www \

@@ -23,19 +23,17 @@ services:
       - mongodb
       - redis
   nginx:
-      image: linuxserver/letsencrypt
+      image: proxy
       ports:
         - "80:80"
         - "443:443"
-      volumes:
-        - ../nginx/nginx.conf:/config/nginx/site-confs/default
       depends_on:
         - b2c-admin
         - b2c-api
       container_name: nginx
       environment:
-        - PUID=999 # get on dockerhost through command "id <user>""
-        - PGID=999
+        - PUID=497 # get on dockerhost through command "id <user>""
+        - PGID=497
         - EMAIL=alexandredias1995@gmail.com
         - URL=b2c-app.info
         - SUBDOMAINS=www
