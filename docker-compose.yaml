@@ -40,3 +40,4 @@ services:
         - URL=b2c-app.info
         - SUBDOMAINS=www
         - TZ=America/NewYork
+        - VALIDATION=http
