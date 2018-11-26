@@ -27,6 +27,8 @@ services:
       ports:
         - "80:80"
         - "443:443"
+      volumes:
+        - /opt/appdata/letsencrypt/config:/config
       depends_on:
         - b2c-admin
         - b2c-api
