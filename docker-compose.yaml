@@ -40,6 +40,3 @@ services:
         - URL=b2c-app.info
         - SUBDOMAINS=www
         - TZ=America/NewYork
-        - VALIDATION=dns # using dns validation
-        - DNSPLUGIN=dnsimple # via dnsimple, note there is additional configuration require separate from this file
-        # - STAGING=true # this should be uncommented when testing for initial success, to avoid some rate limiting
