@@ -23,7 +23,7 @@ services:
       - mongodb
       - redis
   nginx:
-      image: proxy
+      image: linuxserver/letsencrypt
       ports:
         - "80:80"
         - "443:443"
