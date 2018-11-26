@@ -7,4 +7,4 @@ RUN adduser --disabled-password --gecos ""  www \
     && chown -R www:www /run/nginx \
     && chown -R www:www /www 
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /config/nginx/site-confs/default
