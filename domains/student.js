@@ -7,6 +7,9 @@ const StudentSchema = new mongoose.Schema({
   email: {
     type: String
   },
+  phone: {
+    type: String
+  },
   liveNear: {
     type: String
   },
