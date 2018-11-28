@@ -1,5 +1,6 @@
 const registerStudent = require('../../../usecases/registerStudent');
 const listStudents = require('../../../usecases/listStudents');
+const generateStudentsCsv = require('../../../usecases/generateStudentsCsv');
 
 module.exports = {
     save: (req, res, next) => {
@@ -17,7 +18,16 @@ module.exports = {
             .then(students => res.json(200, students))
             .catch(err => {
                 console.error(err);
-                res.json(err.status, err.msg);
+                res.json(err.status, err.message);
+            })
+    },
+    generateListCsv: (req, res, next) => {
+        listStudents()
+            .then(students => generateStudentsCsv(students))
+            .then(csv => res.json(200, csv))
+            .catch(err => {
+                console.error(err);
+                res.json(err.status, err.message);
             })
     }
 }
