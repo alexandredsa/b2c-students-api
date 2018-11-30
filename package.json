@@ -21,10 +21,13 @@
   "dependencies": {
     "dotenv": "^6.1.0",
     "hat": "0.0.3",
+    "json2csv": "^4.3.1",
+    "jsonexport": "^2.4.1",
     "md5": "^2.2.1",
     "moment": "^2.18.1",
     "mongoose": "^4.9.9",
     "redis": "^2.8.0",
+    "rename-keys": "^2.0.1",
     "restify": "^4.3.0",
     "restify-cors-middleware": "^1.1.1"
   },

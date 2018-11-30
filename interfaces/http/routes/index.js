@@ -21,6 +21,7 @@ module.exports = (app) => {
     app.post('/auth/invalidate', auth, account.invalidate);
     app.post('/students', auth, student.save);
     app.get('/students', auth, student.list);
+    app.get('/students/csv', auth, student.generateListCsv);
 
     app.get('/users', auth, isAdmin, account.list);
     app.post('/users', auth, isAdmin, account.create);
