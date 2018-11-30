@@ -2,7 +2,8 @@ const Account = require('../domains/account');
 const ObjectId = require('mongodb').ObjectID;
 
 const listAccounts = (userId) => {
-    return Account.find({ _id: { $ne: ObjectId(userId) } }).sort('login').select("-password");
+    let query = { _id: { $ne: ObjectId(userId) } };
+    return Account.find(query).sort('login').select("-password");
 }
 
 module.exports = listAccounts;
