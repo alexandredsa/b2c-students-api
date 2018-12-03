@@ -1,6 +1,6 @@
 const json2csv = require('json2csv').parse;
 const fields = ['Nome', 'E-mail', 'Telefone', 'Próximo de:', 'Cadastrado Por:'];
-const opts = { fields };
+const opts = { fields, excelStrings: true };
 const renameKeys = require('rename-keys');
 
 const headers = {
