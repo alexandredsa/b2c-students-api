@@ -1,4 +1,8 @@
+const json2xls = require('json2xls');
+const fs = require('fs');
+
 const json2csv = require('json2csv').parse;
+
 const fields = ['Nome', 'E-mail', 'Telefone', 'Próximo de:', 'Cadastrado Por:'];
 const opts = { fields, excelStrings: true };
 const renameKeys = require('rename-keys');
@@ -12,14 +16,10 @@ const headers = {
 }
 
 const generateStudentsCsv = (students) => {
-    const renamedStudents = students.map(student => renameKeys(student, (k, v) => {
-        return headers[k];
-    }));
-
     return new Promise((resolve, reject) => {
         try {
-            const csv = json2csv(renamedStudents, opts);
-            resolve(new Buffer(csv));
+            const xls = json2xls(students);
+            resolve(new Buffer(xls));
         } catch (err) {
             reject(err);
         }
