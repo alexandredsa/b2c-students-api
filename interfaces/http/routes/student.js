@@ -45,12 +45,7 @@ module.exports = {
             Account.find({ login: registeredBy }).sort('login').select("-password")
                 .then(users => {
                     listStudents(users.map(u => u._id))
-                        .then(students => generateStudentsCsv(students))
-                        .then(csv => {
-                            res.setHeader('Content-disposition', 'attachment; filename=data.csv');
-                            res.set('Content-Type', 'text/csv');
-                            res.send(200, csv)
-                        })
+                        .then(data => res.xls('data.xlsx', data))
                         .catch(err => {
                             console.error(err);
                             res.json(err.status, err.message);
