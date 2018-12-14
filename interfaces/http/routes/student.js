@@ -1,7 +1,7 @@
 const registerStudent = require('../../../usecases/registerStudent');
 const listStudents = require('../../../usecases/listStudents');
 const listUser = require('../../../usecases/listUser');
-const generateStudentsCsv = require('../../../usecases/generateStudentsCsv');
+const generateStudentsXls = require('../../../usecases/generateStudentsXls');
 const Account = require('../../../domains/account');
 
 module.exports = {
@@ -38,26 +38,26 @@ module.exports = {
         }
     },
 
-    generateListCsv: (req, res, next) => {
+    generateListXls: (req, res, next) => {
         const { registeredBy } = req.params;
 
         if (registeredBy) {
             Account.find({ login: registeredBy }).sort('login').select("-password")
-                .then(users => {
-                    listStudents(users.map(u => u._id))
-                        .then(data => res.xls('data.xlsx', data))
-                        .catch(err => {
-                            console.error(err);
-                            res.json(err.status, err.message);
-                        })
+                .then(users => listStudents(users.map(u => u._id)))
+                .then(students => generateStudentsXls(students))
+                .then(filename => {
+                    req.params["xls-filename"] = filename;
+                    next()
+                }).catch(err => {
+                    console.error(err);
+                    res.json(err.status, err.message);
                 })
         } else {
             listStudents()
-                .then(students => generateStudentsCsv(students))
-                .then(csv => {
-                    res.setHeader('Content-disposition', 'attachment; filename=data.csv');
-                    res.set('Content-Type', 'text/csv');
-                    res.send(200, csv);
+                .then(students => generateStudentsXls(students))
+                .then(filename => {
+                    req.params["xls-filename"] = filename;
+                    next()
                 }).catch(err => {
                     console.error(err);
                     res.json(err.status, err.message);
