@@ -2,7 +2,7 @@ const { get } = require('../../cache');
 const Account = require('../../../domains/account');
 
 const auth = (req, res, next) => {
-    const token = req.headers['app-token'];
+    const token = req.headers['app-token'] || req.params['app-token'];
     get(token)
         .then(reply => {
             if (reply) {
